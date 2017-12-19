@@ -7,6 +7,7 @@ package br.com.jdbc.business;
 
 
 import br.com.jdbc.exception.BusinessException;
+import br.com.jdbc.model.Consulta;
 import br.com.jdbc.model.Medico;
 import java.util.List;
 
@@ -21,4 +22,10 @@ public interface IMedicoBusiness {
     public List<Medico> getAll(String busca) throws BusinessException;
 
     public Medico getPorId(int id)  throws BusinessException;
+
+    public Medico getPorCrm(int crm) throws BusinessException;
+
+    public List<Medico> getAll() throws BusinessException;
+
+
 }

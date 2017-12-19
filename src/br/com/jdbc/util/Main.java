@@ -1,4 +1,3 @@
-
 package br.com.jdbc.util;
 
 import br.com.jdbc.enuns.Constante;
@@ -14,7 +13,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
-
 public class Main {
 
     static Scanner sc = new Scanner(System.in);
@@ -22,22 +20,19 @@ public class Main {
 
     public static void main(String a[]) {
 
-
-            //cadastrarPacientes();
-
-            
-            System.out.println("INICIO MEDICO");
-            cadastrarMedicos();
-            System.out.println("Fim MEDICO");
-
-            
-         //   listarMedicosEPacientes();
-
-          //  cadastrarConsultas();
-
-            listarConsultas();
-
+        //cadastrarPacientes();
+        //System.out.println("INICIO MEDICO");
+        //cadastrarMedicos();
+        //System.out.println("Fim MEDICO");
+        //System.out.println("INICIO Listas");
+        //listarMedicosEPacientes();
+        //System.out.println("Fim Listas");
+       
+          System.out.println("INICIO Cadastro consulta");
+            cadastrarConsultas();
+          System.out.println("Fim Cadastro consulta");
         
+        //listarConsultas();
     }
 
     private static void cadastrarPacientes() {
@@ -131,9 +126,10 @@ public class Main {
             fachada.salvarMedico(m);
         } catch (BusinessException e) {
             System.out.println(e.getMessage());
-            
+
         }
-        System.out.println("Buscar Medico por CRM");
+
+        System.out.println("Buscar Medico por CRM: Digite o CRM");
         String crm = sc.nextLine();
 
         try {
@@ -141,9 +137,10 @@ public class Main {
             System.out.println("Medico Encontrado");
             System.out.println(busca);
 
-        } catch (BusinessException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             System.out.println(e.getMessage());
-            
+
         }
 
         //medico 2
@@ -156,9 +153,9 @@ public class Main {
             fachada.salvarMedico(m);
         } catch (BusinessException e) {
             System.out.println(e.getMessage());
-            System.exit(1);
+
         }
-        System.out.println("Buscar Medico por CRM");
+        System.out.println("Buscar Medico por CRM: Digite o CRM");
         crm = sc.nextLine();
 
         try {
@@ -168,7 +165,7 @@ public class Main {
 
         } catch (BusinessException e) {
             System.out.println(e.getMessage());
-            System.exit(1);
+
         }
     }
 
@@ -200,13 +197,15 @@ public class Main {
         c.setTipoConsulta(Constante.TIPO_CONSULTA);// CONSULTA
 
         System.out.println("DIGITE O CRM PARA BUSCAR O MEDICO");
-        int crm = Integer.parseInt(sc.nextLine());
+        String crmM = sc.nextLine();
+        int crm = Integer.parseInt(crmM);
+        
         Medico medico = null;
         try {
             medico = fachada.getMedicoPorCRM(crm);
         } catch (BusinessException e) {
             System.out.println(e.getMessage());
-            System.exit(1);
+       
         }
 
         System.out.println("medico Encontrado");
@@ -218,7 +217,7 @@ public class Main {
 
         Paciente p = null;
         try {
-            p = fachada.getPacientePorCpf(cpf);
+            p = fachada.getPacientePorCpf("11111111111");
         } catch (BusinessException e) {
             System.out.println(e.getMessage());
             System.exit(1);

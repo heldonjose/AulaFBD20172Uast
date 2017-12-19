@@ -21,5 +21,7 @@ public interface IPacienteBusiness {
 
     public Paciente getPorId(int id)  throws BusinessException;
 
+    public Paciente getPorCpf(String cpf)  throws BusinessException;
+
     
 }

@@ -20,6 +20,7 @@ public class CoreFacade implements ICoreFacade {
 
     IPacienteBusiness pacienteBusiness;
     IMedicoBusiness medicoBusiness;
+    
 
     public CoreFacade() {
         this.pacienteBusiness = new PacienteBusiness();
@@ -48,8 +49,8 @@ public class CoreFacade implements ICoreFacade {
     }
 
     @Override
-    public Paciente getPacientePorCpf(String cpf) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Paciente getPacientePorCpf(String cpf) throws BusinessException {
+        return this.pacienteBusiness.getPorCpf(cpf);
     }
 
     @Override
@@ -76,17 +77,17 @@ public class CoreFacade implements ICoreFacade {
 
     @Override
     public Medico getMedicoPorCRM(int crm) throws BusinessException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return  this.medicoBusiness.getPorCrm(crm);
     }
 
-    @Override
+    
     public List<Medico> getMedicos() throws BusinessException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.medicoBusiness.getAll();   
     }
 
     @Override
-    public void salvaConsulta(Consulta c) throws BusinessException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void salvaConsulta(Consulta consulta) throws BusinessException {
+         return this.ConsultaBusiness.salvar(consulta);
     }
 
     @Override
@@ -99,4 +100,5 @@ public class CoreFacade implements ICoreFacade {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    
 }

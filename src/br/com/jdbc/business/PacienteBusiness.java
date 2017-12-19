@@ -85,4 +85,14 @@ public class PacienteBusiness implements IPacienteBusiness {
         }
     }
 
+    @Override
+    public Paciente getPorCpf(String cpf) throws BusinessException {
+       try {
+            return daoPaciente.getPorCpf(cpf);
+        } catch (DaoException ex) {
+            ex.printStackTrace();
+            throw new BusinessException(ex.getMessage());
+        }
+    }
+
 }

@@ -6,6 +6,7 @@
 package br.com.jdbc.util;
 
 import br.com.jdbc.exception.BusinessException;
+import br.com.jdbc.model.Consulta;
 import br.com.jdbc.model.Medico;
 import br.com.jdbc.model.Paciente;
 
@@ -19,8 +20,14 @@ public class ValidacaoUtil {
         if (medico.getNome().split(" ").length < 2) {
             throw new BusinessException("Medico deve conter nome e sobrenome");
         }
+    } 
+    public static void validarConsulta(Consulta consulta) throws BusinessException {
+        if (consulta.getMedico()== null || consulta.getPaciente()==null) {
+           
+            throw new BusinessException("Consulta deve conter medico e paciente");
+        }
+        
     }
-
     private ValidacaoUtil() {
     }
     

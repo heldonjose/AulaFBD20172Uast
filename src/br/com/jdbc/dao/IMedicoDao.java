@@ -20,4 +20,6 @@ public interface IMedicoDao {
     public List<Medico> getPorBusca(String busca) throws DaoException;
     
     public Medico getPorId(int id)throws DaoException;
+
+    public Medico getPorCrm(int crm)throws DaoException;
 }

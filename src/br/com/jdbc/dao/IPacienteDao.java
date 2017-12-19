@@ -23,5 +23,7 @@ public interface IPacienteDao {
 
     public Paciente getPorId(int id)throws DaoException;
 
+    public Paciente getPorCpf(String cpf)throws DaoException;
+
     
 }

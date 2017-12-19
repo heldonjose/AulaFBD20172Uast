@@ -165,4 +165,23 @@ public class PacienteDao implements IPacienteDao {
         return pacientes;
     }
 
+    @Override
+    public Paciente getPorCpf(String cpf) throws DaoException {
+          try {
+            this.conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONNECTION_POSTGRESS);
+            this.statement = conexao.prepareStatement("SELECT * FROM paciente where cpf  = '" + cpf + "'");
+            ResultSet result = this.statement.executeQuery();
+            result.next();
+            Paciente p = new Paciente();
+            p.setId(result.getInt(1));
+            p.setNome(result.getString(2));
+            p.setCpf(result.getString(3));
+            return p;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new DaoException("ERRO AO CONSULTAR NO BANCO DE DADOS");
+        }
+
+    }
+
 }

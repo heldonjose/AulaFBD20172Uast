@@ -9,9 +9,12 @@ import br.com.jdbc.dao.IMedicoDao;
 import br.com.jdbc.dao.MedicoDao;
 import br.com.jdbc.exception.BusinessException;
 import br.com.jdbc.exception.DaoException;
+import br.com.jdbc.model.Consulta;
 import br.com.jdbc.model.Medico;
 import br.com.jdbc.util.ValidacaoUtil;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -60,9 +63,36 @@ public class MedicoBusiness implements IMedicoBusiness{
         try {
             return daoMedico.getPorId(id);
         } catch (DaoException ex) {
+          
+            throw new BusinessException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public Medico getPorCrm(int crm) throws BusinessException {
+        try {
+            return daoMedico.getPorCrm(crm);
+        } catch (DaoException ex) {
             ex.printStackTrace();
             throw new BusinessException(ex.getMessage());
         }
     }
-    
+
+    @Override
+    public List<Medico> getAll() throws BusinessException {
+        try {
+            return daoMedico.getAll();
+        } catch (DaoException ex) {
+            ex.printStackTrace();
+            throw new BusinessException(ex.getMessage());
+        }
+               
+     
+    }
+
+   
+
+   
+
+      
 }
