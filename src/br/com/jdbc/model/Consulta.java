@@ -8,6 +8,7 @@ package br.com.jdbc.model;
 import br.com.jdbc.model.Medico;
 import br.com.jdbc.model.Paciente;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.util.Calendar;
 public class Consulta {
        private int id;
        private int codigoConsulta;
-       private Calendar dataConsulta;
+       private Date dataConsulta;
        private String tipoConsulta;
        private Medico medico;
        private Paciente paciente;
@@ -37,11 +38,11 @@ public class Consulta {
         this.codigoConsulta = codigo;
     }
 
-    public Calendar getDataConsulta() {
+    public Date getDataConsulta() {
         return dataConsulta;
     }
 
-    public void setDataConsulta(Calendar dataConsulta) {
+    public void setDataConsulta(Date dataConsulta) {
         this.dataConsulta = dataConsulta;
     }
 
@@ -69,7 +70,11 @@ public class Consulta {
         this.paciente = paciente;
     }
 
-    public Object getNome() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    @Override
+    public String toString() {
+        return "Consulta{" + "id=" + id + ", codigoConsulta=" + codigoConsulta + ", dataConsulta=" + dataConsulta + ", tipoConsulta=" + tipoConsulta + ", medico=" + medico + ", paciente=" + paciente + '}';
     }
+    
+    
 }

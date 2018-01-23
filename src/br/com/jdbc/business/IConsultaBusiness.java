@@ -5,7 +5,9 @@
  */
 package br.com.jdbc.business;
 
+import br.com.jdbc.exception.BusinessException;
 import br.com.jdbc.model.Consulta;
+import java.util.List;
 
 /**
  *
@@ -16,11 +18,11 @@ public interface IConsultaBusiness {
      
 //   public Consulta salvar(Consulta consulta)throws BusinessException;
 //
-//    public List<Consulta> getAll(String busca) throws BusinessException;
+    public List<Consulta> getAll() throws BusinessException;
 //
 //    public Consulta getPorId(int id)  throws BusinessException;
 //
-//    public Consulta getPorCrm(int crm) throws BusinessException;
+   public List<Consulta> getPorCPF(String cpf) throws BusinessException;
 //
 //    public List<Consulta> getAll() throws BusinessException;
 

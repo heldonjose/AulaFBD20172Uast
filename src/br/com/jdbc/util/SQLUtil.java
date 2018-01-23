@@ -27,9 +27,15 @@ public class SQLUtil {
     public static String SELECT_ALL_PACINETE = "SELECT * FROM PACIENTE";
     public static String SELECT_ALL_PACINETE_ID_NOME = "SELECT id, nome FROM PACIENTE";
     public static String SELECT_PACINETE_WHERE = "SELECT * FROM paciente WHERE ";
+    
+    
 
 //SQLs Médico
     public static String INSERT_MEDICO_ALL = "INSERT INTO medico (nome, crm, especializacao) values(?, ?, ?)";
+    
+    //sqls Consulta
+    
+      public static String INSERT_CONSULTA_ALL = "INSERT INTO consulta (codigoconsulta, dataconsulta, medico_id, paciente_id, descricao) values (?, ?,? , ?, ?)";
     
     public static int getCurrentValorTabela(String nomeTabela) throws DaoException {
         int id = 0;

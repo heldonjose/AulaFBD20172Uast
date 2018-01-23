@@ -86,7 +86,24 @@ public class MedicoDao implements IMedicoDao {
 
     @Override
     public Medico getPorId(int id) throws DaoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+           Medico medico = new Medico();
+        try {
+            this.conexao = SQLConnection.getConnectionInstance(SQLConnection.NOME_BD_CONNECTION_POSTGRESS);
+
+            this.statement = conexao.prepareStatement("select * from medico where id = " + String.valueOf(id));
+
+            ResultSet result = this.statement.executeQuery();
+            result.next();
+
+            medico.setId(result.getInt(1));
+            medico.setNome(result.getString(2));
+            medico.setCRM(result.getInt(3));
+            medico.setEspecializacao(result.getString(4));
+            return medico;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            throw new DaoException("Erro ao buscar no banco de Dados");
+        }
     }
 
     @Override

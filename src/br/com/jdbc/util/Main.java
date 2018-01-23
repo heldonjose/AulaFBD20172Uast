@@ -9,6 +9,7 @@ import br.com.jdbc.model.Contato;
 import br.com.jdbc.model.Endereco;
 import br.com.jdbc.model.Medico;
 import br.com.jdbc.model.Paciente;
+import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
@@ -17,6 +18,7 @@ public class Main {
 
     static Scanner sc = new Scanner(System.in);
     static ICoreFacade fachada = new CoreFacade();
+    
 
     public static void main(String a[]) {
 
@@ -29,10 +31,10 @@ public class Main {
         //System.out.println("Fim Listas");
        
           System.out.println("INICIO Cadastro consulta");
-            cadastrarConsultas();
+            //cadastrarConsultas();
           System.out.println("Fim Cadastro consulta");
         
-        //listarConsultas();
+        listarConsultas();
     }
 
     private static void cadastrarPacientes() {
@@ -190,10 +192,10 @@ public class Main {
     }
 
     private static void cadastrarConsultas() {
-
+        //Date data= new Date(2018, 01,22 );
         Consulta c = new Consulta();
         c.setCodigoConsulta(1);
-        c.setDataConsulta(Calendar.getInstance());
+        c.setDataConsulta(Calendar.getInstance().getTime());
         c.setTipoConsulta(Constante.TIPO_CONSULTA);// CONSULTA
 
         System.out.println("DIGITE O CRM PARA BUSCAR O MEDICO");
@@ -217,7 +219,7 @@ public class Main {
 
         Paciente p = null;
         try {
-            p = fachada.getPacientePorCpf("11111111111");
+            p = fachada.getPacientePorCpf(cpf);
         } catch (BusinessException e) {
             System.out.println(e.getMessage());
             System.exit(1);
@@ -237,7 +239,7 @@ public class Main {
         //Segunda Consulta
         c = new Consulta();
         c.setCodigoConsulta(2);
-        c.setDataConsulta(Calendar.getInstance());
+        c.setDataConsulta(Calendar.getInstance().getTime());
         c.setTipoConsulta(Constante.TIPO_RETORNO);// retorno
 
         System.out.println("DIGITE O CRM PARA BUSCAR O MEDICO");

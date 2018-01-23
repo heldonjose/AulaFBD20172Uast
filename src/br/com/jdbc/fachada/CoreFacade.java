@@ -6,6 +6,8 @@
 package br.com.jdbc.fachada;
 
 import br.com.jdbc.adapter.PacienteAdapter;
+import br.com.jdbc.business.ConsultaBusiness;
+import br.com.jdbc.business.IConsultaBusiness;
 import br.com.jdbc.business.IMedicoBusiness;
 import br.com.jdbc.business.IPacienteBusiness;
 import br.com.jdbc.business.MedicoBusiness;
@@ -17,88 +19,87 @@ import br.com.jdbc.model.Paciente;
 import java.util.List;
 
 public class CoreFacade implements ICoreFacade {
-
+    
     IPacienteBusiness pacienteBusiness;
     IMedicoBusiness medicoBusiness;
+    IConsultaBusiness consultaBusiness;
     
-
     public CoreFacade() {
         this.pacienteBusiness = new PacienteBusiness();
         this.medicoBusiness = new MedicoBusiness();
+        this.consultaBusiness = new ConsultaBusiness();
     }
-
+    
     @Override
     public Paciente salvarPaciente(Paciente paciente) throws BusinessException {
         return this.pacienteBusiness.salvar(paciente);
     }
-
+    
     @Override
     public void excluirContato(int id) throws BusinessException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public Paciente editarPaciente(Paciente paciente) throws BusinessException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public List<Paciente> getPacientes() throws BusinessException {
         return pacienteBusiness.getAll(null);
-
+        
     }
-
+    
     @Override
     public Paciente getPacientePorCpf(String cpf) throws BusinessException {
         return this.pacienteBusiness.getPorCpf(cpf);
     }
-
+    
     @Override
     public Paciente getPacientePorId(int id) throws BusinessException {
         return this.pacienteBusiness.getPorId(id);
-
+        
     }
-
+    
     @Override
     public List<PacienteAdapter> getPacientesAdapter() throws BusinessException {
         return this.pacienteBusiness.getAllAdapter();
     }
-
+    
     @Override
     public List<Paciente> getPacientesPorBusca(String busca) throws BusinessException {
-
+        
         return this.pacienteBusiness.getAll(busca);
     }
-
+    
     @Override
     public Medico salvarMedico(Medico medico) throws BusinessException {
         return this.medicoBusiness.salvar(medico);
     }
-
+    
     @Override
     public Medico getMedicoPorCRM(int crm) throws BusinessException {
-        return  this.medicoBusiness.getPorCrm(crm);
+        return this.medicoBusiness.getPorCrm(crm);
     }
-
     
     public List<Medico> getMedicos() throws BusinessException {
-        return this.medicoBusiness.getAll();   
+        return this.medicoBusiness.getAll();        
     }
-
+    
     @Override
     public void salvaConsulta(Consulta consulta) throws BusinessException {
-         return this.ConsultaBusiness.salvar(consulta);
+        this.consultaBusiness.salvar(consulta);
     }
-
+    
     @Override
     public List<Consulta> getConsutlas() throws BusinessException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.consultaBusiness.getAll();
     }
-
+    
     @Override
     public List<Consulta> getConsutlasPorCPFPaciente(String cpf) throws BusinessException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.consultaBusiness.getPorCPF(cpf);
     }
-
     
 }
